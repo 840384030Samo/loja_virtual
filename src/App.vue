@@ -1,4 +1,3 @@
-
 <template>
   <header class="header">
     <div class="container">
@@ -6,178 +5,102 @@
         <img src="/logo.png" alt="Logo" />
         <h1>Minha Plataforma</h1>
       </div>
-      <nav class="nav-links">
+      <div class="menu-toggle" @click="toggleMenu">
+        <!-- Ícone do menu hambúrguer -->
+        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
+        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
+        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
+      </div>
+      <nav :class="{ 'nav-links': true, 'active': isMenuOpen }">
         <a href="#home">Início</a>
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Serviços</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <div class="header-actions">
-        <button >Login</button>
-        <button class="primary" >Registre-se</button>
+        <button>Login</button>
+        <button class="primary">Registre-se</button>
       </div>
     </div>
   </header>
-  <router-view/>
-  
-    <footer class="footer">
-      <div class="footer-container">
-        <!-- Informações de contato -->
-        <div class="footer-section">
-          <h3>Contacte-nos</h3>
-          <p><strong>Telefone:</strong> +258 84 123 4567</p>
-          <p><strong>Email:</strong> contacto@exemplo.com</p>
-          <p><strong>Endereço:</strong> Avenida 25 de Setembro, Maputo, Moçambique</p>
-        </div>
-  
-        <!-- Redes sociais -->
-        <div class="footer-section">
-          <h3>Siga-nos</h3>
-          <div class="social-icons">
-            <a href="https://facebook.com" target="_blank" class="social-icon">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://instagram.com" target="_blank" class="social-icon">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" class="social-icon">
-              <i class="fab fa-linkedin"></i>
-            </a>
-          </div>
-        </div>
-  
-        <!-- Links úteis -->
-        <div class="footer-section">
-          <h3>Links úteis</h3>
-          <ul>
-            <li><a href="#">Sobre nós</a></li>
-            <li><a href="#">Termos e condições</a></li>
-            <li><a href="#">Política de privacidade</a></li>
-            <li><a href="#">Ajuda</a></li>
-          </ul>
+
+  <router-view />
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contacte-nos</h3>
+        <p><strong>Telefone:</strong> +258 84 123 4567</p>
+        <p><strong>Email:</strong> contacto@exemplo.com</p>
+        <p><strong>Endereço:</strong> Avenida 25 de Setembro, Maputo, Moçambique</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Siga-nos</h3>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" class="social-icon">
+            <i class="fab fa-facebook"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/facebook-new.png" alt="facebook-new"/></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-icon">
+            <i class="fab fa-instagram"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/instagram-new--v1.png" alt="instagram-new--v1"/></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-icon">
+            <i class="fab fa-twitter"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/twitterx--v1.png" alt="twitterx--v1"/></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-icon">
+            <i class="fab fa-linkedin"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/linkedin.png" alt="linkedin"/></i>
+          </a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; {{ new Date().getFullYear() }} Nome da Empresa. Todos os direitos reservados.</p>
+
+      <div class="footer-section">
+        <h3>Links úteis</h3>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Termos e condições</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Ajuda</a></li>
+        </ul>
       </div>
-    </footer>
-  
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ new Date().getFullYear() }} Nome da Empresa. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </template>
 
-  <script setup lang="ts">
- 
-  </script>
+<script setup>
+import { ref } from 'vue';
+
+const isMenuOpen = ref(false);
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+/* Base styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-/* ------------------- */
-.footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .footer-section {
-    flex: 1;
-    min-width: 250px;
-    padding: 10px;
-  }
-  
-  .footer-section h3 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-    color: #4CAF50;
-  }
-  
-  .footer-section p,
-  .footer-section ul {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-  
-  .footer-section ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .footer-section ul li a:hover {
-    color: #4CAF50;
-  }
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-  }
-  
-  .social-icon {
-    color: white;
-    font-size: 1.5rem;
-    transition: color 0.3s;
-  }
-  
-  .social-icon:hover {
-    color: #4CAF50;
-  }
-  
-  .footer-bottom {
-    margin-top: 20px;
-    font-size: 0.8rem;
-    border-top: 1px solid #4CAF50;
-    padding-top: 10px;
-  }
-  
-  .header {
+.header {
   background-color: #333;
   color: white;
   padding: 15px 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -190,20 +113,14 @@ nav a.router-link-exact-active {
   height: 40px;
 }
 
-.logo h1 {
-  font-size: 1.5rem;
-  margin: 0;
-}
-
 .nav-links {
   display: flex;
   gap: 20px;
 }
 
 .nav-links a {
-  text-decoration: none;
   color: white;
-  font-size: 1rem;
+  text-decoration: none;
   transition: color 0.3s;
 }
 
@@ -231,5 +148,148 @@ button.primary {
 
 button:hover {
   background-color: #45a049;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.menu-toggle .bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle .bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle .bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-actions {
+    display: none;
+  }
+}
+/* Footer styles */
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Makes sections stackable */
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px; /* Ensures proper resizing */
+  padding: 10px;
+}
+
+.footer-section h3 {
+  color: #4caf50;
+}
+.footer-section ul{
+  list-style: none;
+}
+.footer-section ul a{
+  color:white;
+  text-decoration: none;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #4caf50;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #4caf50;
+  padding-top: 10px;
+  font-size: 0.8rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px;
+    align-items: center;
+  }
+
+  .header-actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px;
+  }
+
+  .footer-container {
+    flex-direction: column; /* Stack footer sections */
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 1.2rem; /* Adjust logo text size */
+  }
+
+  button {
+    font-size: 0.9rem; /* Adjust button size */
+  }
+
+  .footer-section {
+    min-width: 200px; /* Further reduce section size */
+  }
 }
 </style>

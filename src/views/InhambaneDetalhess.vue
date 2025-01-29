@@ -3,8 +3,8 @@
       <!-- Carrossel Full-Width -->
       <div class="slideshows-container">
         <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
-          <img src="../assets/maputo.jpg" style="width:100%;height: 100%;" />
-          <div class="text">Caption Text</div>
+          <img src="../assets/inhambanee.jpg" style="width:100%;height: 100%;" />
+          <div class="text">Natureza</div>
         </div>
         <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
           <img src="../assets/maputoo.jpg" style="width:100%;height: 100%;" />
@@ -23,72 +23,283 @@
         <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
         <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
       </div>
+      <div class="cards-container" style="display:flex; flex-wrap:wrap">
+    <div class="card" style="width: 700px;padding:15px">
+    <div class="info" style="text-align: center;">
+        <h3 style="font-style:">Sobre Inhambane</h3>
+        <div class="parg">
+            <p>Geografia: Inhambane, localizada no sul de Moçambique, é conhecida por cultura vibrante e beleza natural Sua capital, também chamada Inhambane, é conhecida como "Terra de Boa Gente". A província é banhada pelo Oceano Índico e possui praias deslumbrantes.</P>
+            <p>Atrações: Destacam-se praias como Tofo, Barra e Vilankulo, ideais para mergulho e snorkeling, o Arquipélago de Bazaruto e a Lagoa de Inharrime.</p>
+            <p>Gastronomia: Famosa por frutos do mar, caril de camarão, matapa e pratos com coco.</P>
+            <p>Economia: Baseada em pesca, agricultura (especialmente coco) e turismo.</P>
+            <p>História: Uma das cidades mais antigas do país, Inhambane tem influências árabes, portuguesas e africanas, e preserva arquitetura colonial.</p> 
+            
+         </div>
+</div>
+    
+  </div>
+    <div class="card" style="width: 700px; padding:10px;">
+    <div class="info" style="display: flex;flex-direction: column;text-align: center;align-items: center;">
+        <h2>Destinos</h2>
+        <div class="destino">
+            <p>Inhambane ------- Maputo</p>
+            <p>Inhambane ----------Tete</p>
+
+        </div>
+        <button class="btn" @click="nextPg" style="width:150px">Comprar Bilhete</button>     
+    </div>
+    <div class="card-body">
+      
+    </div>
+  </div>
+</div>
   
       <div class="text-center">
-        <h2>Bem-vindo à nossa página!</h2>
-        <p>Confira os produtos abaixo e explore nosso conteúdo.</p>
+        <h2>Bem-vindo à Inhambane</h2>    
       </div>
   
-      <!-- Cartões com Carrossel de Imagens e Botões -->
       <div class="cards-container">
-        <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">
-          <div class="slideshow-container">
-            <div class="mySlides fade" :class="{ active: currentCardIndex1 === 0 }">
-              <img src="../assets/gaza.jpg" alt="Imagem 1" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex1 === 1 }">
-              <img src="../assets/tete.jpg" alt="Imagem 2" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex1 === 2 }">
-              <img src="../assets/beirra.jpg" alt="Imagem 3" class="card-img" />
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Praia do Tofo</h5>
-            <p class="card-text">Perfeito para uma estadia confortável.</p>
-            <button class="btn" @click="nextPg">Comprar Bilhete</button>
-          </div>
+  <!-- Primeira Linha de Cartões -->
+  <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
         </div>
-  
-        <!-- Outros cartões seguem a mesma lógica de @mouseenter e @mouseleave -->
-        <div class="card" @mouseenter="startCardCarousel(2)" @mouseleave="stopCardCarousel(2)">
-          <div class="slideshow-container">
-            <div class="mySlides fade" :class="{ active: currentCardIndex2 === 0 }">
-              <img src="../assets/vilanculos-beach-06.jpg" alt="Imagem 1" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex2 === 1 }">
-              <img src="../assets/VILANCULOS.b.jpg" alt="Imagem 2" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex2 === 2 }">
-              <img src="../assets/vilank.rest.jpg"  height="15px;" alt="Imagem 3" class="card-img" />
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Vilanculos</h5>
-            <p class="card-text">Descrição do Cartão 2.</p>
-            <button class="btn" @click="nextPg">Comprar Bilhete</button>
-          </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
         </div>
-  
-        <div class="card" @mouseenter="startCardCarousel(3)" @mouseleave="stopCardCarousel(3)">
-          <div class="slideshow-container">
-            <div class="mySlides fade" :class="{ active: currentCardIndex3 === 0 }">
-              <img src="../assets/gaza.jpg" alt="Imagem 1" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex3 === 1 }">
-              <img src="../assets/maputo.jpg" alt="Imagem 2" class="card-img" />
-            </div>
-            <div class="mySlides fade" :class="{ active: currentCardIndex3 === 2 }">
-              <img src="../assets/beirra.jpg" alt="Imagem 3" class="card-img" />
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Cartão 3</h5>
-            <p class="card-text">Descrição do Cartão 3.</p>
-            <button class="btn" @click="nextPg">Comprar Bilhete</button>
-          </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
         </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
       </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Praia do Tofo</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+
+  <!-- Replicação da estrutura para outros cartões -->
+  <div class="card" @mouseenter="startCardCarousel(2)" @mouseleave="stopCardCarousel(2)">
+    <div class="slideshow-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/vilanculos-beach-06.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/VILANCULOS.b.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/vilank.rest.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+        <!--  -->
+    <div class="card-body">
+      <h5 class="card-title">Vilanculos</h5>
+      <p class="card-text">Descrição do Cartão 2.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+  <div class="card" @mouseenter="startCardCarousel(3)" @mouseleave="stopCardCarousel(3)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Praia da Barra</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>  
+
+ <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Ilha de Inhambane</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+
+
+   <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Bazaruto</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+
+  <!-- Replicação da estrutura para outros cartões -->
+  <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Praia do Tofo</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+
+  <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Praia do Tofo</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+
+ <div class="card" @mouseenter="startCardCarousel(1)" @mouseleave="stopCardCarousel(1)">   
+    <div class="slideshows-container">
+        <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
+          <img src="../assets/tofo1.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Natureza</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 1 }">
+          <img src="../assets/hotelTofo.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Two</div> -->
+        </div>
+        <div class="mySlides fade" :class="{ active: currentIndex === 2 }">
+          <img src="../assets/beirra.jpg" style="width:100%;height: 100%;" />
+          <!-- <div class="text">Caption Three</div> -->
+        </div>
+        <a class="prev" @click="prevSlide">&#10094;</a>
+        <a class="next" @click="nextSlide">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
+        <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
+        <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Praia do Tofo</h5>
+      <p class="card-text">Perfeito para uma estadia confortável.</p>
+      <button class="btn" @click="nextPg">Comprar Bilhete</button>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+      
     </div>
   </template>
   
@@ -185,11 +396,22 @@
   .pages-container {
     width: 100%;
   }
+  /* destino e sobre*/
+  .parg{
+    text-align: left;
+    margin: 10px;
   
+  }
+
+  .destino{
+    text-align: left;
+    width: fit-content;
+    margin: auto
+  }
   /* Slideshow container */
   .slideshows-container {
     width: 100%;
-    height: 700px;
+    height: 200px;
     overflow: hidden;
     position: relative;
     margin: auto;
@@ -199,12 +421,19 @@
   .mySlides {
     display: none;
   }
+  .mySlides img{
+    min-height: 200px !important;
+  }
   
   .mySlides.active {
     display: block;
   }
   
   /* Next & previous buttons */
+  .prev{
+    float: left;
+    left: 0
+  }
   .prev,
   .next {
     cursor: pointer;
@@ -256,8 +485,8 @@
   /* The dots/bullets/indicators */
   .dot {
     cursor: pointer;
-    height: 15px;
-    width: 15px;
+    height: 9px;
+    width: 9px;
     margin: 0 2px;
     background-color: #bbb;
     border-radius: 50%;
@@ -303,12 +532,13 @@
   /* Cartões */
   .cards-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 40px;
   }
   
   .card {
-    width: 30%;
+    width: 25%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -363,7 +593,8 @@
   }
   
   .card {
-    width: 30%;
+    width: 23%;
+    min-width:250px;
     margin: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -419,5 +650,21 @@
   .btn:hover {
     background-color: #0056b3;
   }
+  /* media querys */
+  @media (max-width: 1084px) {
+    .cards-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 30%;
+    min-width:300px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
   </style>
   
