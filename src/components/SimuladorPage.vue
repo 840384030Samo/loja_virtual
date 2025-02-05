@@ -7,7 +7,7 @@
         <label for="departure">Local de Partida:</label>
         <select id="departure" v-model="form.departure" required>
           <option value="" disabled>Selecione o local de partida</option>
-          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <option v-for="location in loc" :key="location.id" :value="location.local">{{ location.local }}</option>
         </select>
       </div>
 
@@ -15,7 +15,7 @@
         <label for="destination">Local de Chegada:</label>
         <select id="destination" v-model="form.destination" required>
           <option value="" disabled>Selecione o local de chegada</option>
-          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <option v-for="location in dests" :key="location.id" :value="location.local">{{ location.local }}</option>
         </select>
       </div>
 
@@ -54,7 +54,73 @@ export default {
         departureDate: '',
         passengers: 0,
       },
-      ticketPrice: 500, // Preço por passageiro
+      ticketPrice: 500, // Preço por passageiro,
+      
+
+      loc: [
+        {
+          id:1,
+          local: 'Maputo',
+          dest: [2, 3]
+        },
+        {
+          id:2,
+          local:'Gaza',
+          dest:[]
+        },
+        {
+          id:3,
+          local:'Inhambane',
+          dest:[]
+        },
+        {
+          id:4,
+          local:'Sofala',
+          dest:[]
+        },
+        {
+          id:5,
+          local:'Beirra',
+          dest:[6,9]
+        },
+        {
+          id:6,
+          local:'Chimoio',
+          dest:[1,5,9]
+        },
+        {
+          id:7,
+          local:'Zambezia',
+          dest:[]
+        },
+        {
+          id:8,
+          local:'Nampula',
+          dest:[]
+        },
+        {
+          id:9,
+          local:'Tete',
+          dest:[1,5,6]
+          
+        },
+        {
+          id:10,
+          local:'Niassa',
+          dest:[]
+        },
+        {
+          id:11,
+          local:'Quelimane',
+          dest:[]
+        },
+        {
+          id:12,
+          local:'Cabo Delgado',
+          dest:[]
+        }
+      ],
+      dest: [],
       locations: ["Maputo","Caza","Inhambane", "Sofala","Beirra","Chimoio","Zambazia", "Nampula", "Tete", "Niassa","Quelimane", "Cabo Delgado"], // Vetor de locais
     };
   },
@@ -66,13 +132,23 @@ export default {
       const { departure, destination, departureDate, passengers } = this.form;
       return departure && destination && departureDate && passengers > 0;
     },
+    dests() {   
+      const select = this.loc.find(value => value.local == this.form.departure)
+      const ids = select?.dest ? select.dest : []
+      const destinos = this.loc.filter(loc => {
+        if (ids.includes(loc.id)) {
+          return loc
+        }
+      })
+      return destinos
+    }
   },
   methods: {
     proceedToPayment() {      
       this.$router.push('/dados');
       // this.$router.push('/login');
     },
-  },
+  }
 };
 </script>
 
