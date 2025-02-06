@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <SimuladorPage/>
+    <SimuladorPage style="z-index:999;position: absolute; float: right;right: 100px;"/>
     <DestinosPage/>
     <CarrousselComp/>
   </div>
