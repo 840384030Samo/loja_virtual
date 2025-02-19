@@ -9,34 +9,40 @@
       <div class="option-group">
         <label><input type="radio" v-model="tripType" value="round"> Ida e Volta</label>
         <label><input type="radio" v-model="tripType" value="oneway"> Apenas Ida</label>
-        <!-- <label><input type="radio" v-model="tripType" value="special"> Special assistance</label> -->
       </div>
       
-      <input v-model="departure" placeholder="Departure Airport" class="input-field">
-      <input v-model="arrival" placeholder="Arrival Airport" class="input-field">
+      <select id="departure" v-model="form.departure" required>
+          <option value="" disabled>Selecione o local de partida</option>
+          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <option v-for="location in loc" :key="location.id" :value="location.local">{{ location.local }}</option>
+      </select>
+      <select id="destination" v-model="form.destination" required>
+          <option value="" disabled>Selecione o local de chegada</option>
+          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <option v-for="location in dests" :key="location.id" :value="location.local">{{ location.local }}</option>
+      </select>
       
       <div class="date-container">
         <input v-model="departureDate" type="date" class="date-input">
         <input v-model="returnDate" type="date" v-if="tripType === 'round'" class="date-input">
       </div>
       
+      <!-- Área para entrada dos passageiros -->
       <div class="passenger-container">
-        <span>Adult</span>
-        <div class="btn-toggle">
-          <button v-for="option in adultOptions" :key="option.value" @click="adults = option.value" :class="{ active: adults === option.value }">
-            {{ option.label }}
-          </button>
-        </div>
+        <input v-model.number="adults" type="number" min="1" placeholder="Adultos" class="input-field">
+        <input v-model.number="children" type="number" min="0" placeholder="Crianças" class="input-field">
       </div>
       
-      <input v-model.number="children" type="number" placeholder="Child" class="input-field">
-      <input v-model.number="infants" type="number" placeholder="Infant" class="input-field">
+      <!-- Exibição do valor total atualizado em tempo real -->
+      <div class="total-price" >
+         Total: Mts {{ totalPrice }}
+      </div>
       
       <label class="checkbox">
-        <input type="checkbox" v-model="flexibleDates"> Flexible dates? Use the low fare finder
+        <!-- <input type="checkbox" v-model="flexibleDates"> Flexible dates? Use the low fare finder -->
       </label>
       
-      <button class="submit-btn">Comprar Bilhete</button>
+      <button class="submit-btn" to="">Comprar Bilhete</button>
     </div>
   </div>
 </template>
@@ -47,21 +53,53 @@ export default {
     return {
       tab: 'flight',
       tripType: 'round',
-      departure: '',
-      arrival: '',
       departureDate: '2025-02-05',
       returnDate: '2025-02-06',
       adults: 1,
-      adultOptions: [
-        { label: '1', value: 1 },
-        { label: '2', value: 2 },
-        { label: '3', value: 3 },
-        { label: 'More', value: 'more' }
-      ],
       children: 0,
-      infants: 0,
+      form: {
+        departure: '',
+        destination: ''
+      },
+      loc: [
+        { id: 1, local: 'Maputo', dest: [2, 3] },
+        { id: 2, local: 'Gaza', dest: [] },
+        { id: 3, local: 'Inhambane', dest: [] },
+        { id: 4, local: 'Sofala', dest: [] },
+        { id: 5, local: 'Beirra', dest: [6,9] },
+        { id: 6, local: 'Chimoio', dest: [1,5,9] },
+        { id: 7, local: 'Zambezia', dest: [] },
+        { id: 8, local: 'Nampula', dest: [] },
+        { id: 9, local: 'Tete', dest: [1,5,6] },
+        { id: 10, local: 'Niassa', dest: [] },
+        { id: 11, local: 'Quelimane', dest: [] },
+        { id: 12, local: 'Cabo Delgado', dest: [] }
+      ],
+      // Caso haja uma lista específica de destinos
+      dests: [],
+      locations: ["Maputo","Caza","Inhambane", "Sofala","Beirra","Chimoio","Zambazia", "Nampula", "Tete", "Niassa","Quelimane", "Cabo Delgado"], 
       flexibleDates: false
     };
+  },
+  computed: {
+    // Soma total de passageiros
+    totalPassengers() {
+      return this.adults + this.children;
+    },
+    // Cálculo do preço total
+    totalPrice() {
+      // Se os locais não forem selecionados, retorna 0
+      if (!this.form.departure || !this.form.destination) return 0;
+      // Procura os índices dos locais na lista unificada
+      const departureIndex = this.locations.indexOf(this.form.departure);
+      const destinationIndex = this.locations.indexOf(this.form.destination);
+      if (departureIndex === -1 || destinationIndex === -1) return 0;
+      // Exemplo de cálculo: quanto maior a diferença entre os índices, maior o preço
+      const distanceFactor = Math.abs(destinationIndex - departureIndex);
+      // Define um preço base que varia conforme a "distância"
+      const basePrice = (distanceFactor * 5) + 10;
+      return basePrice * this.totalPassengers;
+    }
   }
 };
 </script>
@@ -120,23 +158,14 @@ export default {
 
 .passenger-container {
   display: flex;
-  align-items: center;
   gap: 12px;
   margin-top: 12px;
 }
 
-.btn-toggle button {
-  padding: 6px 12px;
-  border: none;
-  background: #f1f1f1;
-  cursor: pointer;
-  margin-right: 4px;
-  border-radius: 6px;
-}
-
-.btn-toggle button.active {
-  background: #00aaff;
-  color: white;
+.total-price {
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .checkbox {
