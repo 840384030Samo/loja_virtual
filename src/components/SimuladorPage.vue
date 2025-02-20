@@ -8,26 +8,28 @@
     <div v-if="tab === 'flight'" class="form-container">
       <div class="option-group">
         <label><input type="radio" v-model="tripType" value="oneway"> Apenas Ida</label>
-        <label><input type="radio" v-model="tripType" value="round"> Ida e Volta</label>
-        
+        <label><input type="radio" v-model="tripType" value="round"> Ida e Volta</label>        
       </div>
-      <div class="partida">
-          <label for="destination">Local de partida</label>
-      <select id="departure" v-model="form.departure" required>
-        <p class="d">partida</p>
-          <option value="" disabled>Selecione o local de partida</option>
-          <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
-          <option v-for="location in loc" :key="location.id" :value="location.local">{{ location.local }}</option>
-      </select>
-    </div>
-    <div class="chegada">
-      <label for="destination">Local de Chegada</label>
-      <select id="destination" v-model="form.destination" required>
-          <option value="" disabled>Selecione o local de chegada</option>
-          <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
-          <option v-for="location in dests" :key="location.id" :value="location.local">{{ location.local }}</option>
-      </select>
-    </div>
+
+      <div class="destinos" style="display: flex;justify-content: space-between;">
+        <div class="partida" style="display: table-caption;">
+            <label for="destination" style="text-wrap: nowrap;">Local de partida</label>
+        <select id="departure" v-model="form.departure" required>
+          <p class="d">partida</p>
+            <!-- <option value="" disabled></option> -->
+            <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
+            <option v-for="location in loc" :key="location.id" :value="location.local">{{ location.local }}</option>
+        </select>
+      </div>
+      <div class="chegada" style="display: table-caption;">
+        <label for="destination" style="text-wrap: nowrap;">Local de Chegada</label>
+        <select id="destination" v-model="form.destination" required>
+            <!-- <option value="" disabled></option> -->
+            <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
+            <option v-for="location in dests" :key="location.id" :value="location.local">{{ location.local }}</option>
+        </select>
+      </div>
+      </div>
       
       <div class="date-container">
         <input v-model="departureDate" type="date" class="date-input">
@@ -36,7 +38,9 @@
       
       <!-- Área para entrada dos passageiros -->
       <div class="passenger-container">
+        <label for="destination" style="text-wrap: nowrap;">Adultos</label>
         <input v-model.number="adults" type="number" min="1" placeholder="Adultos" class="input-field">
+        <label for="destination" style="text-wrap: nowrap;">Crianças</label>
         <input v-model.number="children" type="number" min="0" placeholder="Crianças" class="input-field">
       </div>
       
