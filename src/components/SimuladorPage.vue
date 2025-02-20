@@ -7,20 +7,27 @@
     
     <div v-if="tab === 'flight'" class="form-container">
       <div class="option-group">
-        <label><input type="radio" v-model="tripType" value="round"> Ida e Volta</label>
         <label><input type="radio" v-model="tripType" value="oneway"> Apenas Ida</label>
+        <label><input type="radio" v-model="tripType" value="round"> Ida e Volta</label>
+        
       </div>
-      
+      <div class="partida">
+          <label for="destination">Local de partida</label>
       <select id="departure" v-model="form.departure" required>
+        <p class="d">partida</p>
           <option value="" disabled>Selecione o local de partida</option>
-          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
           <option v-for="location in loc" :key="location.id" :value="location.local">{{ location.local }}</option>
       </select>
+    </div>
+    <div class="chegada">
+      <label for="destination">Local de Chegada</label>
       <select id="destination" v-model="form.destination" required>
           <option value="" disabled>Selecione o local de chegada</option>
-          <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+          <!-- <option v-for="location in locations" :key="location" :value="location">{{ location }}</option> -->
           <option v-for="location in dests" :key="location.id" :value="location.local">{{ location.local }}</option>
       </select>
+    </div>
       
       <div class="date-container">
         <input v-model="departureDate" type="date" class="date-input">
@@ -76,7 +83,7 @@ export default {
         { id: 12, local: 'Cabo Delgado', dest: [] }
       ],
       // Caso haja uma lista específica de destinos
-      dests: [],
+      //dests: [],
       locations: ["Maputo","Caza","Inhambane", "Sofala","Beirra","Chimoio","Zambazia", "Nampula", "Tete", "Niassa","Quelimane", "Cabo Delgado"], 
       flexibleDates: false
     };
@@ -99,8 +106,18 @@ export default {
       // Define um preço base que varia conforme a "distância"
       const basePrice = (distanceFactor * 5) + 10;
       return basePrice * this.totalPassengers;
+    },
+    dests() {   
+      const select = this.loc.find(value => value.local == this.form.departure)
+      const ids = select?.dest ? select.dest : []
+      const destinos = this.loc.filter(loc => {
+        if (ids.includes(loc.id)) {
+          return loc
+        }
+      })
+      return destinos
     }
-  }
+  },
 };
 </script>
 
@@ -183,5 +200,17 @@ export default {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 12px;
+}
+.chegada{
+
+
+  gap: 19px;
+  justify-content: space-between;
+  color: red;
+}
+.destination{
+
+  display: flex;
+  background-color: #cc0000;
 }
 </style>

@@ -46,7 +46,7 @@
             <p>Inhambane ----------Tete</p>
 
         </div>
-        <button class="btn" @click="nextPg" style="width:150px">Comprar Bilhete</button>     
+        <button class="btn" @click="nextPg" style="width:150px" color="oragen">Comprar Bilhete</button>     
     </div>
     <div class="card-body">
       
