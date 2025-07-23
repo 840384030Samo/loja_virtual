@@ -1,6 +1,6 @@
 <template>
     <div class="pages-container">
-      <!-- Carrossel Full-Width -->
+      <!-- Carrossel Full-Width 
       <div class="slideshows-container">
         <div class="mySlides fade" :class="{ active: currentIndex === 0 }">
           <img src="../assets/inhambanee.jpg" style="width:100%;height: 100%;" />
@@ -17,42 +17,34 @@
         <a class="prev" @click="prevSlide">&#10094;</a>
         <a class="next" @click="nextSlide">&#10095;</a>
       </div>
-  
-      <div style="text-align:center">
+    -->
+      <!-- <div style="text-align:center">
         <span class="dot" :class="{ active: currentIndex === 0 }" @click="goToSlide(0)"></span>
         <span class="dot" :class="{ active: currentIndex === 1 }" @click="goToSlide(1)"></span>
         <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
+      </div> -->
+      <div class="bilheteria">
+        <SimumadorDestino/>
       </div>
-      <div class="cards-container" style="display:flex; flex-wrap:wrap">
-    <div class="card" style="width: 700px;padding:15px">
-    <div class="info" style="text-align: center;">
-        <h3 style="font-style:">Sobre Inhambane</h3>
-        <div class="parg">
-            <p>Geografia: Inhambane, localizada no sul de Moçambique, é conhecida por cultura vibrante e beleza natural Sua capital, também chamada Inhambane, é conhecida como "Terra de Boa Gente". A província é banhada pelo Oceano Índico e possui praias deslumbrantes.</P>
-            <p>Atrações: Destacam-se praias como Tofo, Barra e Vilankulo, ideais para mergulho e snorkeling, o Arquipélago de Bazaruto e a Lagoa de Inharrime.</p>
-            <p>Gastronomia: Famosa por frutos do mar, caril de camarão, matapa e pratos com coco.</P>
-            <p>Economia: Baseada em pesca, agricultura (especialmente coco) e turismo.</P>
-            <p>História: Uma das cidades mais antigas do país, Inhambane tem influências árabes, portuguesas e africanas, e preserva arquitetura colonial.</p> 
-            
-         </div>
-</div>
-    
-  </div>
-    <div class="card" style="width: 700px; padding:10px;">
-    <div class="info" style="display: flex;flex-direction: column;text-align: center;align-items: center;">
-        <h2>Destinos</h2>
-        <div class="destino">
-            <p>Inhambane ------- Maputo</p>
-            <p>Inhambane ----------Tete</p>
-
-        </div>
-        <button class="btn" @click="nextPg" style="width:150px" color="oragen">Comprar Bilhete</button>     
+  <div class="cards-container" style="display:flex; flex-wrap:wrap; justify-content:center">
+  <div class="card card-horizontal" style="display: flex; flex-direction: row; align-items: stretch; max-width: 900px;  width: 100%; margin-bottom: 39px;">
+    <div class="card-image-side" style="flex: 1; display: flex; align-items: center; justify-content: center;  max-width: 410px;">
+      <img :src="require('@/assets/gaza.jpg')" alt="Inhambane" class="card-side-img" style="width: 100%; height: 386px; border-radius: 10px 0 0 10px; object-fit: cover;" />
     </div>
-    <div class="card-body">
-      
+    <div class="info" style="flex: 2; padding: 24px 10px; display: flex; flex-direction: column; justify-content: center;">
+      <h3 style="font-style: italic; text-align:left; margin-bottom: 12px;">Sobre Inhambane</h3>
+      <div class="parg">
+        <p>Geografia: Inhambane, localizada no sul de Moçambique, é conhecida por cultura vibrante e beleza natural. Sua capital, também chamada Inhambane, é conhecida como "Terra de Boa Gente". A província é banhada pelo Oceano Índico e possui praias deslumbrantes.</p>
+        <p>Atrações: Destacam-se praias como Tofo, Barra e Vilankulo, ideais para mergulho e snorkeling, o Arquipélago de Bazaruto e a Lagoa de Inharrime.</p>
+        <p>História: Uma das cidades mais antigas do país, Inhambane tem influências árabes, portuguesas e africanas, e preserva arquitetura colonial.</p>
+      </div>
     </div>
+  </div >
+  <div>
+     <LocaisChegada/>
   </div>
-</div>
+ 
+  </div>
   
       <div class="text-center">
         <h2>Bem-vindo à Inhambane</h2>    
@@ -304,8 +296,15 @@
   </template>
   
   <script>
+import SimumadorDestino from '@/components/SimumadorDestino.vue';
+import LocaisChegada from './LocaisChegada.vue';
+
   export default {
     name: "HomePage",
+    components:{
+      LocaisChegada,
+      SimumadorDestino
+    },
     data() {
       return {
         currentIndex: 0,  // Índice geral para o carrossel
@@ -387,6 +386,10 @@
       // Inicia os carrosséis automaticamente
       setInterval(this.nextSlide, 3000);
     },
+
+
+
+    
   };
   </script>
   
@@ -639,7 +642,7 @@
   }
   
   .btn {
-    background-color: #007bff;
+    background-color: orange;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -665,6 +668,9 @@
     border-radius: 8px;
     overflow: hidden;
   }
+  .bilheteria{
+    height: 70px;
+    padding: 89px;
+  }
 }
   </style>
-  

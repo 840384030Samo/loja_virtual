@@ -55,6 +55,11 @@
     color: white;
     padding: 20px 0;
     text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 100;
   }
   
   .footer-container {
@@ -123,4 +128,3 @@
     padding-top: 10px;
   }
   </style>
-  

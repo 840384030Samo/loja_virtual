@@ -76,6 +76,7 @@
   <style scoped>
   .register-container {
     width: 300px;
+    max-height: 1900px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;

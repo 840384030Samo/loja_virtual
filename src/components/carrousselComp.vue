@@ -9,8 +9,8 @@
           <div class="card">
             <img :src="item.image" :alt="item.title" class="card-image" />
             <div class="card-content">
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.description }}</p>
+              <h3><i class="fas fa-info-circle"></i> {{ item.title }}</h3>
+              <p><i class="fas fa-align-left"></i> {{ item.description }}</p>
             </div>
           </div>
         </div>
@@ -164,4 +164,3 @@
     right: 10px;
   }
   </style>
-  

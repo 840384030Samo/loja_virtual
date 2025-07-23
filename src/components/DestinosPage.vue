@@ -284,9 +284,12 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+button{
+  background-color: orange;
+}
 
 button:hover {
-  background-color: #45a049;
+  background-color: red;
 }
 
 
@@ -295,10 +298,10 @@ button:hover {
    /* Slideshow container */
    .slideshows-container {
     width: 100%;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
     position: relative;
-    margin: auto;
+    /* margin: 8px auto 0 auto; */
   }
   
   /* Hide the images by default */

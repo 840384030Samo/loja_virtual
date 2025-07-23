@@ -24,6 +24,28 @@
       <span class="dot" :class="{ active: currentIndex === 2 }" @click="goToSlide(2)"></span>
     </div>
 
+    <!-- Card horizontal destacado -->
+    `<div class="horizontal-main-card" style="display: flex; flex-direction: row; align-items: stretch; max-width: 900px; min-width: 320px; width: 100%; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div class="card-image-side" style="flex: 1; min-width: 220px; max-width: 350px; display: flex; align-items: center; justify-content: center;">
+        <img src="@/assets/gaza.jpg" alt="Gaza" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px 0 0 10px;" />
+      </div>
+      <div class="card-content-side" style="flex: 2; padding: 24px 18px; display: flex; flex-direction: column; justify-content: center;">
+        <h3 style="font-style: italic; text-align:left; margin-bottom: 12px; color: #222;">Sobre Gaza</h3>
+        <div class="parg">
+          <p>Gaza é uma província de Moçambique conhecida por suas belas praias, cultura rica e natureza exuberante. Sua capital é Xai-Xai.</p>
+          <p>Atrações: Praias, o Parque Nacional do Limpopo, e tradições culturais marcantes.</p>
+          <p>Economia: Agricultura, pesca e turismo são os principais motores econômicos.</p>
+        </div>
+      </div>
+
+    </div>
+  <div class="card2">
+    inf
+    </div>
+    <!-- Fim do card horizontal destacado -->`
+
+    
+
     <div class="text-center">
       <h2>Bem-vindo à nossa página!</h2>
       <p>Confira os produtos abaixo e explore nosso conteúdo.</p>
@@ -418,5 +440,43 @@ p {
 
 .btn:hover {
   background-color: #0056b3;
+}
+
+/* Estilos para o card horizontal destacado */
+.horizontal-main-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  max-width: 900px;
+  min-width: 320px;
+  width: 100%;
+  margin: 32px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-image-side {
+  flex: 1;
+  min-width: 220px;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content-side {
+  flex: 2;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.parg {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #555;
 }
 </style>

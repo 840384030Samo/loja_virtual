@@ -2,30 +2,35 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="/logo.png" alt="Logo" />
-        <h1>Minha Plataforma</h1>
+        <!-- <img src="/logo.png" alt="Logo" /> -->
+        <h2>Space Liners</h2>
       </div>
-      <div class="menu-toggle" @click="toggleMenu">
-        <!-- Ícone do menu hambúrguer -->
-        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
-        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
-        <div :class="{ 'bar': true, 'open': isMenuOpen }"></div>
-      </div>
-      <nav :class="{ 'nav-links': true, 'active': isMenuOpen }">
-        <a href="#home">Início</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+    
       <div class="header-actions">
-        <button>Login</button>
-        <button class="primary">Registre-se</button>
+        <button class="login" @click="$router.push('/homeLogin')">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        <button class="primary" @click="$router.push('/cadastro')">
+          <i class="fas fa-user-plus"></i> Registre-se
+        </button>
       </div>
     </div>
   </header>
+  <nav class="subheader-nav">
+      <button class="menu-toggle left" @click="toggleMenu" aria-label="Abrir menu">
+        <i :class="menuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+      </button>
+      <div :class="['subheader-container', { open: menuOpen }]" ref="navLinks">
+        <router-link to="/" class="subheader-link" exact @click="closeMenu">Início</router-link>
+        <router-link to="/destinos" class="nav-item" @click="closeMenu">Destinos</router-link>
+        <router-link to="/reservas" class="subheader-link" @click="closeMenu">Reservas</router-link>
+        <router-link to="/contactos" class="subheader-link" @click="closeMenu">Contactos</router-link>
+        <router-link to="/layoutSobre" class="subheader-link" @click="closeMenu">Sobre Nós</router-link>
+      </div>
+  </nav>
 
+  
   <router-view />
-
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-section">
@@ -70,38 +75,68 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import LoginPage from './components/loginPage.vue';
+import HomeLogin from './views/homeLogin.vue';
 
-const isMenuOpen = ref(false);
+const menuOpen = ref(false);
+const navLinks = ref(null);
 
 function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value;
+  menuOpen.value = !menuOpen.value;
 }
+function closeMenu() {
+  menuOpen.value = false;
+}
+
+// Fecha o menu ao clicar fora do menu ou em qualquer lugar da tela
+function handleClickOutside(event) {
+  const nav = navLinks.value;
+  if (menuOpen.value && nav && !nav.contains(event.target) && !event.target.closest('.menu-toggle')) {
+    closeMenu();
+  }
+}
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <style>
-/* Base styles */
+/* Base styles  do cabelalho*/
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
 .header {
-  background-color: #333;
+  background-color: brown;
   color: white;
-  padding: 15px 20px;
+  padding: 6px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1100;
+  height: 70px; /* altura fixa para header */
+  box-sizing: border-box;
 }
 
 .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
+
 
 .logo {
   display: flex;
@@ -116,6 +151,8 @@ body {
 .nav-links {
   display: flex;
   gap: 20px;
+  position: fixed;
+  right: 20%;
 }
 
 .nav-links a {
@@ -125,12 +162,14 @@ body {
 }
 
 .nav-links a:hover {
-  color: #42b983;
+  color: red;
 }
 
 .header-actions {
   display: flex;
   gap: 10px;
+  position: fixed;
+  right: 2%;
 }
 
 button {
@@ -140,22 +179,28 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-button.primary {
-  background-color: #42b983;
+.login{
+  background-color: red;
   color: white;
+  font-size: 11px;
+}
+button.primary {
+  background-color:orange;
+  color: white;
+  font-size: 11px;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color:red;
 }
 
 /* Hamburger menu */
 .menu-toggle {
-  display: none;
+  display: flex; /* Exibe o ícone do menu hambúrguer em telas pequenas */
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  z-index: 1200;
 }
 
 .menu-toggle .bar {
@@ -177,30 +222,124 @@ button:hover {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
+/* Subheader styles */
+.subheader-nav {
+  width: 100%;
+  background: #f4e8e8;
+  border-bottom: 2px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  z-index: 1000px;
+  height: 60px;
+  margin-top: 70px;
+}
+
+.subheader-container {
+  display: flex;
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 8px 0;
+  width: 100%;
+  justify-content: center;
+  transition: max-height 0.3s, opacity 0.3s;
+}
+.menu-toggle.left {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  color: #b22222;
+  margin-right: 10px;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .subheader-nav {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+    height: 50px;
+    position: relative;
+    z-index: 1001;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .menu-toggle.left {
+    display: block;
+    position: relative;
+    z-index: 1002;
+    margin-left: 10px;
+  }
+  .subheader-container {
     flex-direction: column;
-    gap: 15px;
+    align-items: flex-start;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    background: #fafafa;
+    width: 100vw;
     position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: #333;
-    border-radius: 5px;
-    padding: 15px;
+    left: 0;
+    top: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 1001;
+    padding: 0;
+    transition: max-height 0.3s, opacity 0.3s;
+    display: flex !important;
+    visibility: visible !important;
   }
-
-  .nav-links.active {
-    display: flex;
+  .subheader-container.open {
+    max-height: 300px;
+    opacity: 1;
+    padding: 10px 0;
+    overflow: visible;
+    display: flex !important;
+    visibility: visible !important;
   }
-
-  .menu-toggle {
-    display: flex;
+  .subheader-link {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    display: block;
+    background: none;
   }
-
-  .header-actions {
-    display: none;
+}
+@media (max-width: 500px) {
+  .subheader-link {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+}
+@media (min-width: 901px) {
+  .menu-toggle.left {
+    display: none !important;
+  }
+  .subheader-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    max-height: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    position: static !important;
+    background: transparent !important;
+    width: 100%;
+    padding: 8px 0;
+  }
+  .subheader-link {
+    display: inline-block;
+    border-bottom: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    background: none;
   }
 }
 /* Footer styles */
@@ -255,41 +394,14 @@ button:hover {
 
 .footer-bottom {
   margin-top: 20px;
-  border-top: 1px solid #4caf50;
+  border-top: 1px solid yellow;
   padding-top: 10px;
   font-size: 0.8rem;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column; /* Stack links vertically */
-    gap: 10px;
-    align-items: center;
-  }
-
-  .header-actions {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px;
-  }
-
-  .footer-container {
-    flex-direction: column; /* Stack footer sections */
-    align-items: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo h1 {
-    font-size: 1.2rem; /* Adjust logo text size */
-  }
-
-  button {
-    font-size: 0.9rem; /* Adjust button size */
-  }
-
-  .footer-section {
-    min-width: 200px; /* Further reduce section size */
-  }
+/* Adiciona espaçamento para o conteúdo não ficar escondido atrás do header fixo */
+.main-content, router-view {
+  display: block;
+  padding-top: 70px; /* Espaço para o header fixo */
 }
 </style>
